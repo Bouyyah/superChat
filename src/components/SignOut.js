@@ -2,11 +2,11 @@ import React from 'react';
 
 
 
-function SignOut() {
+function SignOut({logOut}) {
     return (
-        <div>
-            
-        </div>
+        <>
+            <button onClick = {logOut}>SignOut</button>
+        </>
     )
 }
 

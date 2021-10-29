@@ -45,6 +45,7 @@ function App() {
 
       <section>
         {user ? <ChatRoom /> : <SignIn onSignInWithGoogle = { signInWithGoogle }/>}
+        {auth.currentUser && <SignOut logOut = { () => auth.signOut()}/>}
       </section>
     </div>
   );
