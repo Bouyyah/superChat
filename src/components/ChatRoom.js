@@ -1,9 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import ChatMessage from './ChatMessage';
 import { useCollectionData} from 'react-firebase-hooks/firestore';
 import { FiSend } from 'react-icons/fi';
 
 function ChatRoom({ db, currentUser, timestamp }) {
+
+    const dummy = useRef();
 
     const messagesRef = db.collection('Messages');
     const query = messagesRef.orderBy('createdAt').limit(25);
@@ -25,13 +27,18 @@ function ChatRoom({ db, currentUser, timestamp }) {
         })
 
         setFormValue('');
+
+        dummy.current.scrollIntoView({ behavior: 'smooth'});
     }
 
     return (
         <>
-            <div>
+            <main>
                 {Messages && Messages.map( msg => <ChatMessage key = { msg.id } message = { msg.text } currentUser = { currentUser }/>)}
-            </div>
+
+                <div ref={dummy}></div>
+            </main>
+
             <form onSubmit={ sendMessage }>
                 <input value={ formValue } onChange={(e) => setFormValue(e.target.value)}/>
                 <button type="submit" ><FiSend /></button>

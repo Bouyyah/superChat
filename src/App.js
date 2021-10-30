@@ -42,12 +42,12 @@ function App() {
 
   return (
     <div className="App">
-      <header className="app-header">
-
+      <header>
+        <h1>⚛️🔥💬</h1>
+        { currentUser && <SignOut logOut = { () => auth.signOut()}/> }
       </header>
 
       <section>
-        { currentUser && <SignOut logOut = { () => auth.signOut()}/> }
         { user ? <ChatRoom db = { firestore } currentUser = { currentUser } timestamp = { timestamp }/> : <SignIn onSignInWithGoogle = { signInWithGoogle }/>}
         
       </section>
