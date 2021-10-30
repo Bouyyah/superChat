@@ -22,6 +22,7 @@ body {
   justify-content: space-between;
   z-index: 99;
   padding: 10px;
+  padding-right: 0;
   box-sizing: border-box;
 }
 
@@ -83,7 +84,7 @@ input {
 }
 
 button {
-  background-color: #282c34; /* Green */
+  background-color: #434953; 
   border: none;
   color: white;
   padding: 15px 32px;
@@ -132,16 +133,16 @@ p {
 }
 
 
-.sent {
+.received {
   flex-direction: row-reverse;
 }
 
-.sent p {
+.received p {
   color: white;
   background: #0b93f6;
   align-self: flex-end;
 }
-.received p {
+.sent p {
   background: #e5e5ea;
   color: black;
 }
