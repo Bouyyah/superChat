@@ -9,11 +9,10 @@ import SignOut from './components/SignOut';
 import firebase from "firebase/compat/app";
 import "firebase/compat/auth";
 import "firebase/compat/firestore";
-import { initializeApp } from "firebase/app";
 
 // react-firebase hooks
 import { useAuthState } from 'react-firebase-hooks/auth';
-import { useCollectionData} from 'react-firebase-hooks/firestore';
+
 
 //Initialize app to identify the app 
 firebase.initializeApp({
@@ -30,12 +29,16 @@ const auth = firebase.auth();
 const firestore = firebase.firestore();
 
 function App() {
+
   const[user] = useAuthState(auth);
+  const currentUser = auth.currentUser;
 
   const signInWithGoogle = () => {
     const provider = new firebase.auth.GoogleAuthProvider();
     auth.signInWithPopup(provider);
-}
+  }
+
+  const timestamp = firebase.firestore.FieldValue.serverTimestamp();
 
   return (
     <div className="App">
@@ -44,8 +47,9 @@ function App() {
       </header>
 
       <section>
-        {user ? <ChatRoom /> : <SignIn onSignInWithGoogle = { signInWithGoogle }/>}
-        {auth.currentUser && <SignOut logOut = { () => auth.signOut()}/>}
+        { currentUser && <SignOut logOut = { () => auth.signOut()}/> }
+        { user ? <ChatRoom db = { firestore } currentUser = { currentUser } timestamp = { timestamp }/> : <SignIn onSignInWithGoogle = { signInWithGoogle }/>}
+        
       </section>
     </div>
   );
