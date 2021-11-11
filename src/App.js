@@ -43,7 +43,7 @@ function App() {
   return (
     <div className="App">
       <header>
-        <h1>⚛️🔥💬</h1>
+        <h1>⚛️Bouyyah's Chat💬</h1>
         { currentUser && <SignOut logOut = { () => auth.signOut()}/> }
       </header>
 
