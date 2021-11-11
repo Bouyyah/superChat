@@ -35,7 +35,8 @@ function App() {
 
   const signInWithGoogle = () => {
     const provider = new firebase.auth.GoogleAuthProvider();
-    auth.signInWithPopup(provider);
+    auth.signInWithPopup(provider)
+    .catch((error) => alert(error.message));;
   }
 
   const timestamp = firebase.firestore.FieldValue.serverTimestamp();
